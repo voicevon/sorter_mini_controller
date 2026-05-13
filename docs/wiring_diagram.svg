@@ -1,0 +1,75 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="600" height="400" rx="12" fill="#F8F9FA"/>
+  
+  <!-- Border & Title Bar -->
+  <rect x="20" y="20" width="560" height="360" rx="8" fill="white" stroke="#DEE2E6" stroke-width="2"/>
+  <rect x="20" y="20" width="560" height="50" rx="8" fill="#343A40"/>
+  <rect x="20" y="60" width="560" height="10" fill="#343A40"/>
+  <text x="300" y="52" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">MKS BASE V1.6 - 按钮接线示意图</text>
+
+  <!-- Main Board Area Representation -->
+  <rect x="50" y="100" width="500" height="260" rx="4" fill="#E9ECEF" stroke="#ADB5BD" stroke-dasharray="4 4"/>
+  <text x="50" y="92" font-family="Arial, sans-serif" font-size="14" fill="#6C757D">主板排针区域 - SERVOS Header</text>
+
+  <!-- 3 Rows labels on the left -->
+  <text x="80" y="155" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#495057">顶层 [内侧]</text>
+  <text x="80" y="215" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#495057">中层</text>
+  <text x="80" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#495057">底层 [外侧]</text>
+
+  <!-- Row functions and highlight labels -->
+  <!-- Row 1: GND -->
+  <rect x="160" y="135" width="60" height="30" rx="4" fill="#212529"/>
+  <text x="190" y="155" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">GND (-)</text>
+  
+  <!-- Row 2: 5V -->
+  <rect x="160" y="195" width="60" height="30" rx="4" fill="#DC3545"/>
+  <text x="190" y="215" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">5V (+)</text>
+  
+  <!-- Row 3: Signal -->
+  <rect x="160" y="255" width="60" height="30" rx="4" fill="#0D6EFD"/>
+  <text x="190" y="275" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">SIG (S)</text>
+
+  <!-- 4 Columns of Pins -->
+  <!-- Column 1: D11 -->
+  <text x="270" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#212529" text-anchor="middle">D11</text>
+  <circle cx="270" cy="150" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="270" cy="210" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="270" cy="270" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+
+  <!-- Column 2: D6 -->
+  <text x="330" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#212529" text-anchor="middle">D6</text>
+  <circle cx="330" cy="150" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="330" cy="210" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="330" cy="270" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+
+  <!-- Column 3: D5 -->
+  <text x="390" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#212529" text-anchor="middle">D5</text>
+  <circle cx="390" cy="150" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="390" cy="210" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="390" cy="270" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+
+  <!-- Column 4: D4 -->
+  <text x="450" y="120" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#212529" text-anchor="middle">D4</text>
+  <circle cx="450" cy="150" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="450" cy="210" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+  <circle cx="450" cy="270" r="8" fill="#DEE2E6" stroke="#495057" stroke-width="2"/>
+
+  <!-- Wiring Example for D11 -->
+  <!-- Connection Lines -->
+  <path d="M 270 150 L 270 140 L 510 140 L 510 190" stroke="#212529" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 270 270 L 270 300 L 510 300 L 510 230" stroke="#0D6EFD" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Active wire marker points -->
+  <circle cx="270" cy="150" r="4" fill="#FFC107"/>
+  <circle cx="270" cy="270" r="4" fill="#FFC107"/>
+
+  <!-- Hardware Switch Symbol -->
+  <rect x="490" y="190" width="40" height="40" rx="4" fill="#FFC107" stroke="#495057" stroke-width="2"/>
+  <circle cx="510" cy="210" r="10" fill="#FFFFFF" stroke="#495057" stroke-width="2"/>
+  <text x="510" y="250" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#212529" text-anchor="middle">物理按钮</text>
+  
+  <!-- Instructional annotations -->
+  <rect x="100" y="320" width="300" height="30" rx="15" fill="#D1E7DD"/>
+  <text x="115" y="340" font-family="Arial, sans-serif" font-size="14" fill="#0F5132" font-weight="bold">✔ 警告：5V (红色层) 保持悬空，切勿短接！</text>
+</svg>
