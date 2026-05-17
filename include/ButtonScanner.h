@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include "pins.h"
+#include "config.h"  // 引入 DEBOUNCE_MS 等时序宏
 
 // ============================================================================
 // ButtonScanner —— 四按钮防抖扫描器
@@ -80,8 +81,8 @@ public:
   }
 
 private:
-  static const int           NUM_BTNS    = 4;  // 按钮总数
-  static const unsigned long DEBOUNCE_MS = 50; // 防抖间隔（毫秒）
+  static const int NUM_BTNS = 4; // 按钮总数
+  // DEBOUNCE_MS 由 config.h 统一定义
 
   TargetCb      _onTarget;        // 单键按下回调
   HomingCb      _onHoming;        // 多键归零回调

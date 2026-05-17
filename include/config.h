@@ -7,10 +7,13 @@
 // 硬件配置：MKS BASE V1.6 / RAMPS 1.4（ATmega2560）
 // ============================================================================
 
-// --- 细分配置（须与驱动板上 MS1/MS2/MS3 跳线保持一致）---
-// A4988 / DRV8825 的细分由硬件跳线决定，软件无法更改。
-// 三个跳线全部安装 = 1/16 细分。
-#define MICROSTEP_RESOLUTION  16    // 可选：1 | 2 | 4 | 8 | 16
+// --- 细分配置（MS1/MS2 引脚已连至 MCU GPIO，由软件控制）---
+// 板载驱动芯片：A4982（仅 MS1 + MS2，无 MS3）
+// A4982 真值表：
+//   MS1=L MS2=L -> 全步(1)   MS1=H MS2=L -> 1/2步
+//   MS1=L MS2=H -> 1/4步     MS1=H MS2=H -> 1/16步
+// 引脚定义见 pins.h（X_MS1_PIN / X_MS2_PIN 等）
+#define MICROSTEP_RESOLUTION  16    // 软件目标细分：1 | 2 | 4 | 16
 
 // --- 步进电机几何参数 ---
 #define MOTOR_FULL_STEPS      200   // 每转整步数（1.8°/步电机）
@@ -34,8 +37,9 @@
 #define ROTATE_LEFT_POS   (-(long)STEPS_PER_90DEG)  // 向左旋转 90°
 #define ROTATE_RIGHT_POS  ( (long)STEPS_PER_90DEG)  // 向右旋转 90°
 
-// --- 节拍时序 ---
-#define SLIDE_WAIT_MS  2000UL   // 等待物品滑行完成的时间（毫秒）
+// --- 时序参数 ---
+#define SLIDE_WAIT_MS   1  // 等待物品滑行完成的时间（毫秒）
+#define DEBOUNCE_MS       50UL  // 按键防抖采样间隔（毫秒）
 
 // --- 哨兵值：表示该电机本节拍无需移动 ---
 // 分拣轮具有 90° 旋转对称性，任意停止位置均等价于中立位。

@@ -26,9 +26,7 @@ public:
   };
 
   // -------------------------------------------------------------------------
-  SorterController(AccelStepper& motorX,
-                   AccelStepper& motorY,
-                   AccelStepper& motorZ);
+  SorterController(AccelStepper& sharedStepper);
 
   // 在 setup() 中调用一次——配置电机速度/加速度及限位开关引脚。
   void begin();
@@ -47,9 +45,7 @@ public:
 
 private:
   // ---- 电机引用 ------------------------------------------------------------
-  AccelStepper& _x;
-  AccelStepper& _y;
-  AccelStepper& _z;
+  AccelStepper& _sharedStepper;
 
   // ---- 状态机 --------------------------------------------------------------
   State         _state;
@@ -76,12 +72,13 @@ private:
   // 分拣轮具有 90° 旋转对称性，因此任意停止位置均等价于中立位。
   long _getTargetPos(int stage, int targetID) const;
 
-  // 仅当目标位置有效时才下发相对移动指令（跳过 MOTOR_NO_MOVE）。
-  void _applyMove(AccelStepper& s, long target);
+  // 统一下发组运动配置（设置 DIR 和 EN，并让 _sharedStepper 走相应步数）
+  void _prepareGroupMove();
 
-  void _runAll();              // 同时驱动三轴步进电机
-  bool _anyRunning() const;    // 任意轴仍在运动则返回 true
+  void _runAll();              // 驱动主步进电机产生脉冲
+  bool _anyRunning() const;    // 主电机仍在运动则返回 true
   void _doHomingStep();        // 归零例程（每次 loop 调用一步）
+  void _resetPositions();      // 到位后将主电机当前位置清零
 
   void _advancePipeline();     // 流水线整体前移一格，弹出队首目标
   void _printPipelineState() const; // 串口打印当前流水线状态

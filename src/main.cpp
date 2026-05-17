@@ -5,14 +5,12 @@
 #include "ButtonScanner.h"
 
 // ============================================================================
-// 硬件：MKS BASE V1.6（ATmega2560）
-// 三路步进驱动器，均使用 DRIVER（脉冲/方向）模式。
+// 硬件：ESP32
+// 单一共享 STEP 引脚用于产生同步脉冲，独立 DIR 和 EN(脉冲屏蔽)
 // ============================================================================
-AccelStepper stepperX(AccelStepper::DRIVER, X_STEP_PIN, X_DIR_PIN);
-AccelStepper stepperY(AccelStepper::DRIVER, Y_STEP_PIN, Y_DIR_PIN);
-AccelStepper stepperZ(AccelStepper::DRIVER, Z_STEP_PIN, Z_DIR_PIN);
+AccelStepper sharedStepper(AccelStepper::DRIVER, SHARED_STEP_PIN, DUMMY_DIR_PIN);
 
-SorterController sorter(stepperX, stepperY, stepperZ);
+SorterController sorter(sharedStepper);
 
 // ============================================================================
 // 按钮事件回调（传入 ButtonScanner 的自由函数）
@@ -32,7 +30,7 @@ void setup() {
   while (!Serial) {}   // 等待串口就绪
 
   Serial.println("--- 分拣机迷你控制器 ---");
-  Serial.println("硬件：MKS BASE V1.6（ATmega2560）");
+  Serial.println("硬件：ESP32");
 
   sorter.begin();
   buttons.begin();
