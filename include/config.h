@@ -16,6 +16,7 @@
 #define MICROSTEP_RESOLUTION  16    // 软件目标细分：1 | 2 | 4 | 16
 
 // --- 步进电机几何参数 ---
+#define NUM_MOTORS            8
 #define MOTOR_FULL_STEPS      200   // 每转整步数（1.8°/步电机）
 #define GEAR_RATIO            4     // 减速比 1:4（电机转 4 圈，分拣轮转 1 圈）
 // 分拣轮旋转 90° 所需步数：(整步数 × 细分 × 减速比) / 4 = 3200
@@ -26,11 +27,8 @@
 #define STEPPER_ACCELERATION  6400.0f   // 加速度（步/秒²）
 #define HOMING_CONSTANT_SPEED (-800.0f) // 归零恒速（步/秒，负值 = 朝向限位开关方向）
 
-// --- 各轴电机方向 ---
-// +1 = 正向，-1 = 反向（电机安装方向相反时取反）
-#define MOTOR_X_DIR  (-1)   // 第一级分拣电机
-#define MOTOR_Y_DIR  (-1)   // 第二级分拣电机
-#define MOTOR_Z_DIR  (+1)   // 第三级分拣电机
+// --- 各轴电机方向 (1 = 正向，-1 = 反向) ---
+// 为了兼容8电机架构，这里暂不使用宏，而是在 SorterController 中统一定义为常量数组。
 
 // --- 逻辑位置（方向系数乘入之前的步数值）---
 #define POS_NEUTRAL       0L

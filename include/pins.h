@@ -2,39 +2,42 @@
 #define PINS_H
 
 // ============================================================================
-// ESP32 引脚定义 (共用 STEP, 独立 DIR 和 脉冲屏蔽 EN)
+// ESP32 引脚定义 (共用 STEP, 8路独立 EN, 74HC595/165 串行 DIR/HOME)
 // ============================================================================
 
 // --- 共享的 STEP 引脚 ---
-// 所有的 4988 驱动器共用此脉冲引脚
-#define SHARED_STEP_PIN    25
+#define SHARED_STEP_PIN    5
 
 // AccelStepper 需要的虚拟 DIR 引脚（不实际接线）
-#define DUMMY_DIR_PIN      26
+#define DUMMY_DIR_PIN      22
 
-// --- X 轴步进电机 ---
-#define X_DIR_PIN          27
-#define X_ENABLE_PIN       14 // 硬件电路上屏蔽 STEP 脉冲 (低电平放行，高电平屏蔽)
+// --- 8路 ENABLE 脉冲屏蔽引脚 (低电平放行，高电平屏蔽) ---
+// 数组在 SorterController 中定义，这里声明具体引脚
+#define EN_PIN_0           13
+#define EN_PIN_1           12
+#define EN_PIN_2           14
+#define EN_PIN_3           27
+#define EN_PIN_4           26
+#define EN_PIN_5           25
+#define EN_PIN_6           33
+#define EN_PIN_7           32
 
-// --- Y 轴步进电机 ---
-#define Y_DIR_PIN          12
-#define Y_ENABLE_PIN       13
+// --- 细分控制 (全核共用) ---
+#define MS1_PIN            4
+#define MS2_PIN            16
+#define MS3_PIN            17
 
-// --- Z 轴步进电机 ---
-#define Z_DIR_PIN          32
-#define Z_ENABLE_PIN       33
+// --- 74HC595 (DIR 输出) & 74HC165 (HOME 输入) 共享 SPI ---
+#define LATCH_PIN          18 // 锁存 (STCP / PL)
+#define CLOCK_PIN          19 // 时钟 (SHCP / CP)
+#define DIR_DATA_OUT       21 // HC595 串行数据输入 (DS)
+#define HOME_DATA_IN       34 // HC165 串行数据输出 (Q7)
 
-// --- 限位开关 / 归零传感器 ---
-// 内部上拉输入，低电平触发
-#define X_HOME_PIN         34
-#define Y_HOME_PIN         35
-#define Z_HOME_PIN         36
-
-// --- 目标选择按钮 ---
+// --- 目标选择按钮 (留作参考，未变更) ---
 #define BTN_TARGET_1_PIN   39
-#define BTN_TARGET_2_PIN   4
-#define BTN_TARGET_3_PIN   16
-#define BTN_TARGET_4_PIN   17
+#define BTN_TARGET_2_PIN   36 // 改为了 36 以避开部分引脚
+#define BTN_TARGET_3_PIN   35
+#define BTN_TARGET_4_PIN   32 // 这里的按钮可能会冲突，先随便设，用户会自己改
 
 // --- 其他 ---
 #define LED_PIN            2
